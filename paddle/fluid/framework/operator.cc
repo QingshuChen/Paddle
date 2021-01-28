@@ -1262,6 +1262,15 @@ void OperatorWithKernel::ChooseKernel(const RuntimeContext& ctx,
     VLOG(3) << "missing XPU kernel: " << type_
             << ", expected_kernel_key:" << expected_kernel_key
             << ", fallbacking to CPU one!";
+    static int count = 0;
+    if (std::getenv("PADDLE_DEBUG") != nullptr) {
+      if (count < 100) {
+        std::cout << "missing XPU kernel: " << type_
+                  << ", expected_kernel_key:" << expected_kernel_key
+                  << ", fallbacking to CPU one!\n";
+        count++;
+      }
+    }
     expected_kernel_key.place_ = platform::CPUPlace();
     kernel_iter = kernels.find(expected_kernel_key);
   }

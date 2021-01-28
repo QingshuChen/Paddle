@@ -472,7 +472,21 @@ void Executor::RunPartialPreparedContext(ExecutorPrepareContext* ctx,
 
   for (int64_t i = start_op_index; i < end_op_index; ++i) {
     auto& op = ctx->ops_[i];
+    struct timeval start, end;
+    if (std::getenv("PADDLE_DEBUG") != nullptr) {
+      gettimeofday(&start, NULL);
+    }
     op->Run(*local_scope, place_);
+    if (std::getenv("PADDLE_DEBUG") != nullptr) {
+      int r = xpu_wait();
+      gettimeofday(&end, NULL);
+      printf("time_static %s %ld\n", op->Type().c_str(),
+             (end.tv_sec - start.tv_sec) * 1000000 +
+                 (end.tv_usec - start.tv_usec));
+      if (r != 0) {
+        PADDLE_THROW(platform::errors::Unimplemented("XPU wait error%d", r));
+      }
+    }
     if (gc) {
       DeleteUnusedTensors(*local_scope, op.get(), ctx->unused_vars_, gc.get());
     }

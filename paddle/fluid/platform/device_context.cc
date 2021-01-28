@@ -189,11 +189,118 @@ XPUDeviceContext::XPUDeviceContext(XPUPlace place) : place_(place) {
                         "Baidu Kunlun Card is properly installed.",
                         ret));
   context_ = xpu::create_context();
-  void* l3ptr = nullptr;
+  static void* pd0_l3ptr = nullptr;
+  static void* pd1_l3ptr = nullptr;
+  static void* pd2_l3ptr = nullptr;
+  static void* pd3_l3ptr = nullptr;
+  static void* pd4_l3ptr = nullptr;
+  static void* pd5_l3ptr = nullptr;
+  static void* pd6_l3ptr = nullptr;
+  static void* pd7_l3ptr = nullptr;
+  static void* pd8_l3ptr = nullptr;
+  static void* pd9_l3ptr = nullptr;
+  static void* pd10_l3ptr = nullptr;
+  static void* pd11_l3ptr = nullptr;
+  static void* pd12_l3ptr = nullptr;
+  static void* pd13_l3ptr = nullptr;
+  static void* pd14_l3ptr = nullptr;
+  static void* pd15_l3ptr = nullptr;
   int l3_size = 13.5 * 1024 * 1024;
-  xpu_malloc(static_cast<void**>(&l3ptr), l3_size, XPU_MEM_L3);
-  if (l3ptr != nullptr) {
-    context_->_l3_mgr.set(l3ptr, l3_size);
+  if (place.device == 0) {
+    if (pd0_l3ptr == nullptr) {
+      xpu_malloc(static_cast<void**>(&pd0_l3ptr), l3_size, XPU_MEM_L3);
+    }
+    context_->_l3_mgr.set(pd0_l3ptr, l3_size);
+    std::cout << "set l3 size " << l3_size << std::endl;
+  } else if (place.device == 1) {
+    if (pd1_l3ptr == nullptr) {
+      xpu_malloc(static_cast<void**>(&pd1_l3ptr), l3_size, XPU_MEM_L3);
+    }
+    context_->_l3_mgr.set(pd1_l3ptr, l3_size);
+    std::cout << "set l3 size " << l3_size << std::endl;
+  } else if (place.device == 2) {
+    if (pd2_l3ptr == nullptr) {
+      xpu_malloc(static_cast<void**>(&pd2_l3ptr), l3_size, XPU_MEM_L3);
+    }
+    context_->_l3_mgr.set(pd2_l3ptr, l3_size);
+    std::cout << "set l3 size " << l3_size << std::endl;
+  } else if (place.device == 3) {
+    if (pd3_l3ptr == nullptr) {
+      xpu_malloc(static_cast<void**>(&pd3_l3ptr), l3_size, XPU_MEM_L3);
+    }
+    context_->_l3_mgr.set(pd3_l3ptr, l3_size);
+    std::cout << "set l3 size " << l3_size << std::endl;
+  } else if (place.device == 4) {
+    if (pd4_l3ptr == nullptr) {
+      xpu_malloc(static_cast<void**>(&pd4_l3ptr), l3_size, XPU_MEM_L3);
+    }
+    context_->_l3_mgr.set(pd4_l3ptr, l3_size);
+    std::cout << "set l3 size " << l3_size << std::endl;
+  } else if (place.device == 5) {
+    if (pd5_l3ptr == nullptr) {
+      xpu_malloc(static_cast<void**>(&pd5_l3ptr), l3_size, XPU_MEM_L3);
+    }
+    context_->_l3_mgr.set(pd5_l3ptr, l3_size);
+    std::cout << "set l3 size " << l3_size << std::endl;
+  } else if (place.device == 6) {
+    if (pd6_l3ptr == nullptr) {
+      xpu_malloc(static_cast<void**>(&pd6_l3ptr), l3_size, XPU_MEM_L3);
+    }
+    context_->_l3_mgr.set(pd6_l3ptr, l3_size);
+    std::cout << "set l3 size " << l3_size << std::endl;
+  } else if (place.device == 7) {
+    if (pd7_l3ptr == nullptr) {
+      xpu_malloc(static_cast<void**>(&pd7_l3ptr), l3_size, XPU_MEM_L3);
+    }
+    context_->_l3_mgr.set(pd7_l3ptr, l3_size);
+    std::cout << "set l3 size " << l3_size << std::endl;
+  } else if (place.device == 8) {
+    if (pd8_l3ptr == nullptr) {
+      xpu_malloc(static_cast<void**>(&pd8_l3ptr), l3_size, XPU_MEM_L3);
+    }
+    context_->_l3_mgr.set(pd8_l3ptr, l3_size);
+    std::cout << "set l3 size " << l3_size << std::endl;
+  } else if (place.device == 9) {
+    if (pd9_l3ptr == nullptr) {
+      xpu_malloc(static_cast<void**>(&pd9_l3ptr), l3_size, XPU_MEM_L3);
+    }
+    context_->_l3_mgr.set(pd9_l3ptr, l3_size);
+    std::cout << "set l3 size " << l3_size << std::endl;
+  } else if (place.device == 10) {
+    if (pd10_l3ptr == nullptr) {
+      xpu_malloc(static_cast<void**>(&pd10_l3ptr), l3_size, XPU_MEM_L3);
+    }
+    context_->_l3_mgr.set(pd10_l3ptr, l3_size);
+    std::cout << "set l3 size " << l3_size << std::endl;
+  } else if (place.device == 11) {
+    if (pd11_l3ptr == nullptr) {
+      xpu_malloc(static_cast<void**>(&pd11_l3ptr), l3_size, XPU_MEM_L3);
+    }
+    context_->_l3_mgr.set(pd11_l3ptr, l3_size);
+    std::cout << "set l3 size " << l3_size << std::endl;
+  } else if (place.device == 12) {
+    if (pd12_l3ptr == nullptr) {
+      xpu_malloc(static_cast<void**>(&pd12_l3ptr), l3_size, XPU_MEM_L3);
+    }
+    context_->_l3_mgr.set(pd12_l3ptr, l3_size);
+    std::cout << "set l3 size " << l3_size << std::endl;
+  } else if (place.device == 13) {
+    if (pd13_l3ptr == nullptr) {
+      xpu_malloc(static_cast<void**>(&pd13_l3ptr), l3_size, XPU_MEM_L3);
+    }
+    context_->_l3_mgr.set(pd13_l3ptr, l3_size);
+    std::cout << "set l3 size " << l3_size << std::endl;
+  } else if (place.device == 14) {
+    if (pd14_l3ptr == nullptr) {
+      xpu_malloc(static_cast<void**>(&pd14_l3ptr), l3_size, XPU_MEM_L3);
+    }
+    context_->_l3_mgr.set(pd14_l3ptr, l3_size);
+    std::cout << "set l3 size " << l3_size << std::endl;
+  } else if (place.device == 15) {
+    if (pd15_l3ptr == nullptr) {
+      xpu_malloc(static_cast<void**>(&pd15_l3ptr), l3_size, XPU_MEM_L3);
+    }
+    context_->_l3_mgr.set(pd15_l3ptr, l3_size);
     std::cout << "set l3 size " << l3_size << std::endl;
   }
   ret = xpu_set_device(dev_id);
