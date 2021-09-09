@@ -131,6 +131,8 @@ class MatMulV2XPUKernel : public framework::OpKernel<T> {
     } else {
       if (std::getenv("XPU_PADDLE_MAT_MUL_V2_FCINT32") != nullptr) {
         MatMulXPUFunction<T, int32_t>(x, y, out, trans_x, trans_y, ctx);
+      } else if (std::getenv("XPU_PADDLE_LOCAL_INT16") != nullptr) {
+        MatMulXPUFunction<T, float>(x, y, out, trans_x, trans_y, ctx);
       } else {
         MatMulXPUFunction<T, int16_t>(x, y, out, trans_x, trans_y, ctx);
       }
